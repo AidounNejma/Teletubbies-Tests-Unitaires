@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\TeletubbiesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TeletubbiesRepository::class)
@@ -20,11 +22,16 @@ class Teletubbies
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\NotBlank(message: 'Vous devez remplir cette donnée')]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[
+        Assert\NotBlank(message: 'Vous devez remplir cette donnée'),
+        Assert\Length(max: 10)
+    ]
     private $color;
 
     /**
@@ -40,6 +47,7 @@ class Teletubbies
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\NotBlank]
     private $shape;
 
     public function getId(): ?int

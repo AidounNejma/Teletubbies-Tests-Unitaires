@@ -22,7 +22,7 @@ class TeletubbiesType extends AbstractType
                         'message' => 'Veuillez entrer un Teletubbies',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 2,
                         'minMessage' => 'Votre teletubbies doit contenir un minimum de {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
@@ -34,12 +34,6 @@ class TeletubbiesType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez entrer un Teletubbies',
                     ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre teletubbies doit contenir un minimum de {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
                 ],
             ])
             ->add('gender', TextType::class, [
@@ -48,7 +42,7 @@ class TeletubbiesType extends AbstractType
                         'message' => 'Veuillez entrer un Teletubbies',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 4,
                         'minMessage' => 'Votre teletubbies doit contenir un minimum de {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
@@ -59,12 +53,6 @@ class TeletubbiesType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un Teletubbies',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre teletubbies doit contenir un minimum de {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
                     ]),
                 ],
             ])

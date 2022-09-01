@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Teletubbies;
 use App\Form\TeletubbiesType;
+use App\Repository\TeletubbiesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,11 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TeletubbiesController extends AbstractController
 {
-    #[Route('/teletubbies', name: 'teletubbies')]
-    public function index(): Response
+    #[Route('/tous-les-teletubbies', name: 'teletubbies')]
+    public function index(TeletubbiesRepository $teletubbiesRepo): Response
     {
         return $this->render('teletubbies/index.html.twig', [
-            'controller_name' => 'TeletubbiesController',
+            'teletubbies' => $teletubbiesRepo->findAll()
         ]);
     }
 
@@ -31,6 +32,8 @@ class TeletubbiesController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $entityManager->persist($teletubbies);
             $entityManager->flush();
+
+            return $this->redirectToRoute('teletubbies');
         }
 
         return $this->render('teletubbies/create.html.twig', [
