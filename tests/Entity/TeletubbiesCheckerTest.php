@@ -15,17 +15,11 @@ class TeletubbiesCheckerTest extends KernelTestCase
     {
         yield [
         (new Teletubbies())
-        ->setName("")
+        ->setName("Nejma")
         ->setColor("blue")
         ->setGender("male")
         ->setAge("19")
         ->setShape("Square"),
-        (new Teletubbies())
-        ->setName("Nejma")
-        ->setColor("blueblueblue")
-        ->setGender("male")
-        ->setAge("19")
-        ->setShape("Square")
         ];
         
     }
@@ -37,6 +31,8 @@ class TeletubbiesCheckerTest extends KernelTestCase
     # Tester si le name est vide
     public function testNotBlankName($teletubbies): void
     {
+        $teletubbies->setName('');
+        
         self::bootKernel();
         $container = static::getContainer();
         $errors = $container->get('validator')->validate($teletubbies);
@@ -49,7 +45,8 @@ class TeletubbiesCheckerTest extends KernelTestCase
     # Tester si la couleur est supérieure à 10
     public function testLengthColor($teletubbies): void
     {
-        
+        $teletubbies->setColor('blueblueblue');
+
         self::bootKernel();
         $container = static::getContainer();
         $errors = $container->get('validator')->validate($teletubbies);
